@@ -1,3 +1,5 @@
+package model;
+
 public class Employee {
 
     private String employeeID;
@@ -12,10 +14,7 @@ public class Employee {
         this.firstname = firstname;
         this.age = age;
         this.job = job;
-
-
     }
-
 
     //region Getter and Setter
     public String getEmployeeID() {

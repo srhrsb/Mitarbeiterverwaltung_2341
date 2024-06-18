@@ -1,3 +1,7 @@
+package dao;
+
+import model.Employee;
+
 public class EmployeeDAO {
 
     private Employee[] employees = new Employee[10];
@@ -6,7 +10,6 @@ public class EmployeeDAO {
 
 
     }
-
 
     /**
      * Fügt einen Mitarbeiter zur Mitarbeiterliste hinzu
@@ -26,9 +29,7 @@ public class EmployeeDAO {
                 return true;
             }
         }
-
         return false;
-
     }
 
     /**
@@ -39,7 +40,7 @@ public class EmployeeDAO {
     public Employee getEmployeeByID( String employeeID ){
 
         for(var employee : employees){
-            if(employee.getEmployeeID() == employeeID)
+            if(employee != null && employee.getEmployeeID() == employeeID)
                 return employee;
         }
 
