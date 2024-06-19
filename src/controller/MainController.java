@@ -16,8 +16,11 @@ public class MainController {
     private void Test(){
         //ToDo: Mitarbeiter erzeugen via EmployeeDAO und Name, Vorname, Alter und Job
         //ToDo: ausgeben
-        employeeDB.addEmployee("TestID", "Böttcher", "Sebastian", (byte)47, "Dozent" );
-        var employee = employeeDB.getEmployeeByID("TestID");
+
+        String id = createEmployeeID("Böttcher","Sebastian");
+        employeeDB.addEmployee(id, "Böttcher", "Sebastian", (byte)47, "Dozent" );
+        var employee = employeeDB.getEmployeeByID(id);
+        System.out.println("Name: "+employee.getEmployeeID());
         System.out.println("Name: "+employee.getLastname());
         System.out.println("Vorname: "+employee.getFirstname());
         System.out.println("Alter: "+employee.getAge());
