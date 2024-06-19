@@ -24,8 +24,13 @@ public class MainController {
         System.out.println("Job: "+employee.getJob());
     }
 
-    // Aufgabe: Erstellen Sie eine Methode die Namen, Vorname und daraus eine ID erszeugt
+    // Aufgabe: Erstellen Sie eine Methode die Namen, Vorname annimmt und daraus eine ID erzeugt
     // aus den ersten 2 Buchstaben vom Nachnamen und den ersten 2 vom Vorname
     // und einer 6-stelligen Zufallszahl
+    private String createEmployeeID(String lastname, String firstname){
+        return    lastname.substring(0,2)
+                + firstname.substring(0,2)
+                + (int)(Math.random() * 999999 );
+    }
 
 }
