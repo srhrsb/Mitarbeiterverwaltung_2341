@@ -25,7 +25,11 @@ public class EmployeeListDAO {
      * @return employee
      */
     public Employee getEmployeeByID( String employeeID ){
-
+        for( var employee : employees){
+            if(employee.getEmployeeID().equals(employeeID)){
+               return employee;
+            }
+        }
 
         return null;
     }
