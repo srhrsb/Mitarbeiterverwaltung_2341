@@ -2,15 +2,19 @@ package controller;
 import dao.EmployeeDAO;
 
 public class MainController {
+    /**
+     * Objekt mit dem die Mitarbeiterdaten zukünftig verwaltet werden
+     */
     private EmployeeDAO employeeDB;
 
-    public MainController(EmployeeDAO employeeDB) {
+    public MainController( EmployeeDAO employeeDB ) {
         this.employeeDB = employeeDB;
         Test();
     }
 
     public static void main(String[] args) {
-        new MainController( new EmployeeDAO() );
+        EmployeeDAO employeeDAO = new EmployeeDAO();
+        new MainController( employeeDAO );
     }
 
     private void Test(){
