@@ -122,4 +122,20 @@ public class MainView extends JFrame {
        employeeIdTf.setText(id);
     }
 
+    /**
+     * Zeigt ein Information für den Nutzer in einem Infofenster
+     * @param text - Text der angezeigt werden soll
+     */
+    public void showInfoWindow( String text){
+        JOptionPane.showMessageDialog(this, text, "Information", JOptionPane.INFORMATION_MESSAGE);
+    }
+
+    /**
+     * Zeigt eine Fehlermeldung für den Nutzer in einem fenster
+     * @param text - Text der angezeigt werden soll
+     */
+    public void showErrorWindow( String text){
+        JOptionPane.showMessageDialog(this, text, "Fehler", JOptionPane.ERROR_MESSAGE);
+    }
+
 }

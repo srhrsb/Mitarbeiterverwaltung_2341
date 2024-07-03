@@ -83,14 +83,23 @@ public class MainController {
                 String employeeID = createEmployeeID(lastname, firstname);
                 employeeDB.addEmployee(employeeID, lastname, firstname, job);
                 System.out.println("new employee saved");
+
+                String text = "Ein neuer Mitarbeiter wurde hinzugefügt:\n"+
+                              "Name:    "+lastname+"\n"+
+                              "Vorname: "+firstname+"\n"+
+                              "ID:      "+employeeID +"\n"+
+                              "Beruf:   "+job+"\n";
+
+                view.showInfoWindow( text );
+
             } else {
                 System.err.println("inputs not valid");
-                //ToDo Fehler ausgeben => Eingaben zu kurz
+                view.showErrorWindow("Die Eingaben sollen mindestens zwei Zeichen lang sein");
             }
         }
         else {
             System.err.println("inputs missing");
-            //ToDo Fehler ausgeben => Mindestens eine Eingabe fehlt
+            view.showErrorWindow("Nicht alle Textfelder sind ausgefüllt");
         }
     }
 
