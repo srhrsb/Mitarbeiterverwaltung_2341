@@ -12,9 +12,9 @@ public class EmployeeListDAO {
 
 
     public boolean addEmployee( String employeeID, String lastname,
-                                String firstname, byte age, String job ){
+                                String firstname, String job ){
 
-       Employee employee = new Employee(employeeID, lastname, firstname, age, job);
+       Employee employee = new Employee(employeeID, lastname, firstname, job);
        var success = employees.add(employee);
        return success;
     }

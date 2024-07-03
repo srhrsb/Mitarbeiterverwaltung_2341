@@ -1,5 +1,6 @@
 package controller;
 import dao.EmployeeDAO;
+import dao.EmployeeListDAO;
 import view.MainView;
 
 import java.awt.event.ActionEvent;
@@ -8,23 +9,23 @@ public class MainController {
     /**
      * Objekt mit dem die Mitarbeiterdaten zukünftig verwaltet werden
      */
-    private EmployeeDAO employeeDB;
+    private EmployeeListDAO employeeDB;
     private MainView view;
 
-    public MainController( EmployeeDAO employeeDB, MainView view) {
-        this.employeeDB = employeeDB;
+    public MainController( EmployeeListDAO employeeListDB, MainView view) {
+        this.employeeDB = employeeListDB;
         this.view = view;
 
-        view.addGetButtonHandler(this::getEmployee);
-        view.addSaveButtonHandler(this::saveEmployee);
-        view.addDeleteButtonHandler(this::deleteEmployee);
+        view.addGetButtonHandler(this::getEmployeeAction);
+        view.addSaveButtonHandler(this::saveEmployeeAction);
+        view.addDeleteButtonHandler(this::deleteEmployeeAction);
         //Test();
     }
 
     public static void main(String[] args) {
-        EmployeeDAO employeeDAO = new EmployeeDAO();
+        EmployeeListDAO employeeListDAO = new EmployeeListDAO();
         MainView view = new MainView( 500, 200);
-        new MainController( employeeDAO, view );
+        new MainController( employeeListDAO, view );
     }
 
     private void Test(){
@@ -32,12 +33,11 @@ public class MainController {
         //ToDo: ausgeben
 
         String id = createEmployeeID("Böttcher","Sebastian");
-        employeeDB.addEmployee(id, "Böttcher", "Sebastian", (byte)47, "Dozent" );
+        employeeDB.addEmployee(id, "Böttcher", "Sebastian", "Dozent" );
         var employee = employeeDB.getEmployeeByID(id);
         System.out.println("Name: "+employee.getEmployeeID());
         System.out.println("Name: "+employee.getLastname());
         System.out.println("Vorname: "+employee.getFirstname());
-        System.out.println("Alter: "+employee.getAge());
         System.out.println("Job: "+employee.getJob());
     }
 
@@ -54,23 +54,51 @@ public class MainController {
      * Mitarbeiter mit Hilfe der ID anfordern und anzeigen
      * @param event
      */
-    private void getEmployee(ActionEvent event){
+    private void getEmployeeAction(ActionEvent event){
         System.out.println("Action Event: " + event.getActionCommand());
+
+
     }
 
     /**
      * Aktuell eingegebene Mitarbeiterdaten speichern
      * @param event
      */
-    private void saveEmployee(ActionEvent event){
+    private void saveEmployeeAction(ActionEvent event){
         System.out.println("Action Event: " + event.getActionCommand());
+
+        String firstname = view.getFirstname();
+        String lastname = view.getLastname();
+        String job = view.getJob();
+
+        boolean inputEmpty = firstname.isEmpty() || lastname.isEmpty()
+                             || job.isEmpty();
+
+        if(!inputEmpty){
+
+            boolean inputsValid = firstname.length() >= 2 && lastname.length() >= 2 &&
+                    job.length() >= 2;
+
+            if (inputsValid) {
+                String employeeID = createEmployeeID(lastname, firstname);
+                employeeDB.addEmployee(employeeID, lastname, firstname, job);
+                System.out.println("new employee saved");
+            } else {
+                System.err.println("inputs not valid");
+                //ToDo Fehler ausgeben => Eingaben zu kurz
+            }
+        }
+        else {
+            System.err.println("inputs missing");
+            //ToDo Fehler ausgeben => Mindestens eine Eingabe fehlt
+        }
     }
 
     /**
      * Mitarbeiter mit entsprechender ID löschen
      * @param event
      */
-    private void deleteEmployee(ActionEvent event){
+    private void deleteEmployeeAction(ActionEvent event){
         System.out.println("Action Event: " + event.getActionCommand());
     }
 

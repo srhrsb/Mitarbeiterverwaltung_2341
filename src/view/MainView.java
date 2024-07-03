@@ -94,4 +94,32 @@ public class MainView extends JFrame {
         deleteEmployeeBtn.addActionListener(listener);
     }
 
+    public String getFirstname(){
+        return firstnameTf.getText();
+    }
+
+    public void setFirstname( String firstname ){
+       firstnameTf.setText(firstname);
+    }
+
+    public String getLastname(){
+        return lastnameTf.getText();
+    }
+
+    public void setLastname( String lastname ){
+        lastnameTf.setText(lastname);
+    }
+
+    public String getJob(){
+        return jobTf.getText();
+    }
+
+    public void setJob( String job ){
+        jobTf.setText(job);
+    }
+
+    public void setEmployeeId( String id ){
+       employeeIdTf.setText(id);
+    }
+
 }

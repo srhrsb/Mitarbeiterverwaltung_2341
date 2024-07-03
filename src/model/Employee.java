@@ -5,14 +5,12 @@ public class Employee {
     private String employeeID;
     private String lastname;
     private String firstname;
-    private byte age;
     private String job;
 
-    public Employee(String employeeID, String lastname, String firstname, byte age, String job) {
+    public Employee(String employeeID, String lastname, String firstname, String job) {
         this.employeeID = employeeID;
         this.lastname = lastname;
         this.firstname = firstname;
-        this.age = age;
         this.job = job;
     }
 
@@ -39,14 +37,6 @@ public class Employee {
 
     public void setFirstname(String firstname) {
         this.firstname = firstname;
-    }
-
-    public byte getAge() {
-        return age;
-    }
-
-    public void setAge(byte age) {
-        this.age = age;
     }
 
     public String getJob() {

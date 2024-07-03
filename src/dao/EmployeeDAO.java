@@ -16,15 +16,14 @@ public class EmployeeDAO {
      * @param employeeID Mitarbeiter ID des Mitarbeiters
      * @param lastname
      * @param firstname
-     * @param age
      * @param job
      */
     public boolean addEmployee( String employeeID, String lastname,
-                             String firstname, byte age, String job ){
+                             String firstname, String job ){
 
         for (int i = 0; i < employees.length; i++) {
             if(employees[i] == null){
-                Employee employee = new Employee(employeeID, lastname, firstname, age, job);
+                Employee employee = new Employee(employeeID, lastname, firstname,  job);
                 employees[i] = employee;
                 return true;
             }
