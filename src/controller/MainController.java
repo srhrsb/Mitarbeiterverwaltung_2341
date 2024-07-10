@@ -57,6 +57,10 @@ public class MainController {
     private void getEmployeeAction(ActionEvent event){
         System.out.println("Action Event: " + event.getActionCommand());
 
+
+
+
+
     }
 
     /**
@@ -75,22 +79,28 @@ public class MainController {
 
         if(!inputEmpty){
 
-            boolean inputsValid = firstname.length() >= 2 && lastname.length() >= 2 &&
-                    job.length() >= 2;
+            boolean inputsValid = firstname.length() >= 2
+                    && lastname.length() >= 2
+                    && job.length() >= 2;
 
             if (inputsValid) {
                 String employeeID = createEmployeeID(lastname, firstname);
-                employeeDB.addEmployee(employeeID, lastname, firstname, job);
-                System.out.println("new employee saved");
+                var success = employeeDB.addEmployee(employeeID, lastname, firstname, job);
 
-                String text = "Ein neuer Mitarbeiter wurde hinzugefügt:\n"+
-                              "Name:    "+lastname+"\n"+
-                              "Vorname: "+firstname+"\n"+
-                              "ID:      "+employeeID +"\n"+
-                              "Beruf:   "+job+"\n";
+                if(success) {
+                    System.out.println("new employee saved");
+                    String text = "Ein neuer Mitarbeiter wurde hinzugefügt:\n" +
+                            "Name:    " + lastname + "\n" +
+                            "Vorname: " + firstname + "\n" +
+                            "ID:      " + employeeID + "\n" +
+                            "Beruf:   " + job + "\n";
 
-                view.showInfoWindow( text );
-
+                    view.showInfoWindow(text);
+                }
+                else{
+                    System.err.println("add list failed");
+                    view.showErrorWindow("Der Mitarbeiter konnte nicht hinzugefügt werden.");
+                }
             } else {
                 System.err.println("inputs not valid");
                 view.showErrorWindow("Die Eingaben sollen mindestens zwei Zeichen lang sein");
