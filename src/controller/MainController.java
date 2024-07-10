@@ -57,7 +57,6 @@ public class MainController {
     private void getEmployeeAction(ActionEvent event){
         System.out.println("Action Event: " + event.getActionCommand());
 
-
     }
 
     /**
