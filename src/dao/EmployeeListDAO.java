@@ -4,6 +4,8 @@ import model.Employee;
 
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 
 public class EmployeeListDAO {
@@ -56,7 +58,10 @@ public class EmployeeListDAO {
     private boolean loadCSV(){
 
         try{
-            FileReader csv = new FileReader( CSV_SAVE_PATH );
+            var path = Path.of( CSV_SAVE_PATH);
+            String csvText = Files.readString( path );
+
+            String[] lines = csvText.split( "[[\\r\\n]+]");
 
             return true;
         }
