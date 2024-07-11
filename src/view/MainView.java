@@ -118,9 +118,14 @@ public class MainView extends JFrame {
         jobTf.setText(job);
     }
 
+    public String getEmployeeId(){
+        return employeeIdTf.getText();
+    }
+
     public void setEmployeeId( String id ){
        employeeIdTf.setText(id);
     }
+
 
     /**
      * Zeigt ein Information für den Nutzer in einem Infofenster

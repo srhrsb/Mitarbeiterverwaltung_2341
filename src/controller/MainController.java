@@ -11,6 +11,8 @@ public class MainController {
      */
     private EmployeeListDAO employeeDB;
     private MainView view;
+    private final int EMPLOYEE_ID_LENGTH = 10;
+    private final int MIN_INPUT_LENGTH = 2;
 
     public MainController( EmployeeListDAO employeeListDB, MainView view) {
         this.employeeDB = employeeListDB;
@@ -57,10 +59,25 @@ public class MainController {
     private void getEmployeeAction(ActionEvent event){
         System.out.println("Action Event: " + event.getActionCommand());
 
+        var id = view.getEmployeeId();
 
-
-
-
+        if(id.length() == EMPLOYEE_ID_LENGTH){
+           var employee = employeeDB.getEmployeeByID( id );
+           if(employee != null){
+               view.setLastname( employee.getLastname() );
+               view.setFirstname( employee.getFirstname() );
+               view.setJob( employee.getJob() );
+               view.showErrorWindow("Der Mitarbeiter wurde gefunden.");
+           }
+           else{
+               System.err.println("employee not found");
+               view.showErrorWindow("Der Mitarbeiter mit dieser ID wurde nicht gefunden.");
+           }
+        }
+        else{
+            System.err.println("wrong id length");
+            view.showErrorWindow("Die Mitarbeiter ID enthält 10 Zeichen.");
+        }
     }
 
     /**
@@ -79,9 +96,9 @@ public class MainController {
 
         if(!inputEmpty){
 
-            boolean inputsValid = firstname.length() >= 2
-                    && lastname.length() >= 2
-                    && job.length() >= 2;
+            boolean inputsValid = firstname.length() >= MIN_INPUT_LENGTH
+                    && lastname.length() >= MIN_INPUT_LENGTH
+                    && job.length() >= MIN_INPUT_LENGTH;
 
             if (inputsValid) {
                 String employeeID = createEmployeeID(lastname, firstname);
@@ -95,6 +112,7 @@ public class MainController {
                             "ID:      " + employeeID + "\n" +
                             "Beruf:   " + job + "\n";
 
+                    view.setEmployeeId(employeeID);
                     view.showInfoWindow(text);
                 }
                 else{
@@ -118,6 +136,12 @@ public class MainController {
      */
     private void deleteEmployeeAction(ActionEvent event){
         System.out.println("Action Event: " + event.getActionCommand());
+
+        //ToDO
+
+
+
+
     }
 
 }
