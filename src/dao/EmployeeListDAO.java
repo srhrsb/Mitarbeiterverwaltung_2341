@@ -2,6 +2,8 @@ package dao;
 
 import model.Employee;
 
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.util.ArrayList;
 
 public class EmployeeListDAO {
@@ -19,17 +21,53 @@ public class EmployeeListDAO {
 
        Employee employee = new Employee(employeeID, lastname, firstname, job);
        var success = employees.add(employee);
+
+       if(success){
+           return saveCSV();
+       }
+
        return success;
     }
 
     private boolean saveCSV(){
 
+        try{
+            FileWriter csv = new FileWriter( CSV_SAVE_PATH );
 
+            for( var employee : employees ){
 
+                String line = employee.getEmployeeID() + CSV_SEPARATOR +
+                              employee.getFirstname() + CSV_SEPARATOR +
+                              employee.getLastname() + CSV_SEPARATOR +
+                              employee.getJob() +
+                              "\n";
 
+                csv.write( line );
+            }
 
-        return false;
+            csv.close();
+            return true;
+        }
+        catch( Exception e ){
+            throw new RuntimeException(e);
+        }
     }
+
+    private boolean loadCSV(){
+
+        try{
+            FileReader csv = new FileReader( CSV_SAVE_PATH );
+
+            return true;
+        }
+        catch( Exception e ){
+            throw new RuntimeException(e);
+        }
+
+    }
+
+
+
 
     /**
      * Gibt den Mitarbeiter mit der entsprechenden ID zurück, falls nicht gefunden null
