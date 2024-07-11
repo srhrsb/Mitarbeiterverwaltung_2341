@@ -10,7 +10,7 @@ public class MainController {
      */
     private EmployeeListDAO employeeDB;
     private MainView view;
-    private final int EMPLOYEE_ID_LENGTH = 10;
+    private final int EMPLOYEE_ID_LENGTH=10;
     private final int MIN_INPUT_LENGTH = 2;
 
     public MainController( EmployeeListDAO employeeListDB, MainView view) {
@@ -44,15 +44,19 @@ public class MainController {
     private void getEmployeeAction(ActionEvent event){
         System.out.println("Action Event: " + event.getActionCommand());
 
-        var id = view.getEmployeeId();
+        var id = view.getEmployeeId(); //Id von Textfeld holen
 
-        if(id.length() == EMPLOYEE_ID_LENGTH){
-           var employee = employeeDB.getEmployeeByID( id );
-           if(employee != null){
+        if(id.length() == EMPLOYEE_ID_LENGTH){ //ist die Id 10 Zeichen lang?
+           var employee = employeeDB.getEmployeeByID( id ); //den Mitarbeiter holen mit Hilfe der ID
+           if( employee != null ){ //ist das ein gültiges Mitarbeiter-Objekt?
+
+               //den Textfeldern im View die Daten von Employee zuweisen
                view.setLastname( employee.getLastname() );
                view.setFirstname( employee.getFirstname() );
                view.setJob( employee.getJob() );
-               view.showErrorWindow("Der Mitarbeiter wurde gefunden.");
+
+               //Erfolgsmeldung an den Nutzer
+               view.showInfoWindow("Der Mitarbeiter wurde gefunden.");
            }
            else{
                System.err.println("employee not found");
@@ -122,7 +126,7 @@ public class MainController {
     private void deleteEmployeeAction(ActionEvent event){
         System.out.println("Action Event: " + event.getActionCommand());
 
-        //ToDO
+
 
 
 

@@ -34,13 +34,13 @@ public class EmployeeListDAO {
         return null;
     }
 
-    public void removeEmployeeByID( String employeeID ){
+    public boolean removeEmployeeByID( String employeeID ){
         for( var employee : employees){
             if(employee.getEmployeeID().equals(employeeID)){
-                employees.remove(employee);
+               return employees.remove(employee);
             }
         }
+
+        return false;
     }
-
-
 }
