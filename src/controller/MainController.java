@@ -21,26 +21,12 @@ public class MainController {
         view.addGetButtonHandler(this::getEmployeeAction);
         view.addSaveButtonHandler(this::saveEmployeeAction);
         view.addDeleteButtonHandler(this::deleteEmployeeAction);
-        //Test();
     }
 
     public static void main(String[] args) {
         EmployeeListDAO employeeListDAO = new EmployeeListDAO();
         MainView view = new MainView( 500, 200);
         new MainController( employeeListDAO, view );
-    }
-
-    private void Test(){
-        //ToDo: Mitarbeiter erzeugen via EmployeeDAO und Name, Vorname, Alter und Job
-        //ToDo: ausgeben
-
-        String id = createEmployeeID("Böttcher","Sebastian");
-        employeeDB.addEmployee(id, "Böttcher", "Sebastian", "Dozent" );
-        var employee = employeeDB.getEmployeeByID(id);
-        System.out.println("Name: "+employee.getEmployeeID());
-        System.out.println("Name: "+employee.getLastname());
-        System.out.println("Vorname: "+employee.getFirstname());
-        System.out.println("Job: "+employee.getJob());
     }
 
     // Aufgabe: Erstellen Sie eine Methode die Namen, Vorname annimmt und daraus eine ID erzeugt
