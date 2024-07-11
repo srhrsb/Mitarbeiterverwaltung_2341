@@ -10,6 +10,9 @@ public class EmployeeListDAO {
      */
     private ArrayList<Employee> employees = new ArrayList<>();
 
+    private final String CSV_SAVE_PATH ="data/employees.csv";
+    private final String CSV_SEPARATOR = ",";
+
 
     public boolean addEmployee( String employeeID, String lastname,
                                 String firstname, String job ){
@@ -19,7 +22,7 @@ public class EmployeeListDAO {
        return success;
     }
 
-    private boolean save(){
+    private boolean saveCSV(){
 
 
 
