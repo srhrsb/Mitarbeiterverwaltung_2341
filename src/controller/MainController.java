@@ -131,11 +131,12 @@ public class MainController {
             var success = employeeDB.removeEmployeeByID( id );
 
             if (success){
+                employeeDB.saveCSV();
                 view.showInfoWindow("Dieser Mitarbeiter wurde gelöscht.");
             }
             else{
                 view.showErrorWindow("Dieser Mitarbeiter konnte nicht gelöscht werden.");
-            }
+            } //BöSe581528
         }
         else{
             System.err.println("wrong id length");

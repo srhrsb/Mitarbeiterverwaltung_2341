@@ -18,8 +18,12 @@ public class EmployeeListDAO {
     private final String CSV_SEPARATOR = ",";
 
 
-    public boolean addEmployee( String employeeID, String lastname,
-                                String firstname, String job ){
+    public EmployeeListDAO() {
+      loadCSV();
+    }
+
+    public boolean addEmployee(String employeeID, String lastname,
+                               String firstname, String job ){
 
        Employee employee = new Employee(employeeID, lastname, firstname, job);
        var success = employees.add(employee);
@@ -31,7 +35,7 @@ public class EmployeeListDAO {
        return success;
     }
 
-    private boolean saveCSV(){
+    public boolean saveCSV(){
 
         try{
             FileWriter csv = new FileWriter( CSV_SAVE_PATH );
@@ -55,20 +59,34 @@ public class EmployeeListDAO {
         }
     }
 
-    private boolean loadCSV(){
+    private void loadCSV(){
 
         try{
             var path = Path.of( CSV_SAVE_PATH);
             String csvText = Files.readString( path );
 
+            if(csvText.isEmpty())
+                return;
+
             String[] lines = csvText.split( "[[\\r\\n]+]");
 
-            return true;
+            for(var line : lines){
+
+                String[] values = line.split(CSV_SEPARATOR);
+
+                Employee employee =  new Employee(
+                       values[0], //id
+                       values[2], //lastname
+                       values[1], //firstname
+                       values[3]  //job
+                );
+
+                employees.add(employee);
+            }
         }
         catch( Exception e ){
             throw new RuntimeException(e);
         }
-
     }
 
 
