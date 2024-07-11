@@ -19,6 +19,15 @@ public class EmployeeListDAO {
        return success;
     }
 
+    private boolean save(){
+
+
+
+
+
+        return false;
+    }
+
     /**
      * Gibt den Mitarbeiter mit der entsprechenden ID zurück, falls nicht gefunden null
      * @param employeeID

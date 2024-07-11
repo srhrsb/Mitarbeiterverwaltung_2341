@@ -126,11 +126,20 @@ public class MainController {
     private void deleteEmployeeAction(ActionEvent event){
         System.out.println("Action Event: " + event.getActionCommand());
 
+        var id = view.getEmployeeId();
+        if(id.length() == EMPLOYEE_ID_LENGTH){
+            var success = employeeDB.removeEmployeeByID( id );
 
-
-
-
-
+            if (success){
+                view.showInfoWindow("Dieser Mitarbeiter wurde gelöscht.");
+            }
+            else{
+                view.showErrorWindow("Dieser Mitarbeiter konnte nicht gelöscht werden.");
+            }
+        }
+        else{
+            System.err.println("wrong id length");
+            view.showErrorWindow("Die Mitarbeiter ID enthält 10 Zeichen.");
+        }
     }
-
 }
