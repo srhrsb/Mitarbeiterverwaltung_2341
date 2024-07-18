@@ -5,13 +5,17 @@ public class Employee {
     private String employeeID;
     private String lastname;
     private String firstname;
+    private int room;
+    private String phone;
     private String job;
 
-    public Employee(String employeeID, String lastname, String firstname, String job) {
+    public Employee(String employeeID, String lastname, String firstname, String job, String phone, int room) {
         this.employeeID = employeeID;
         this.lastname = lastname;
         this.firstname = firstname;
         this.job = job;
+        this.room = room;
+        this.phone = phone;
     }
 
     //region Getter and Setter
@@ -46,6 +50,23 @@ public class Employee {
     public void setJob(String job) {
         this.job = job;
     }
+
+    public int getRoom() {
+        return room;
+    }
+
+    public void setRoom(int room) {
+        this.room = room;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
     //endregion
 
 }

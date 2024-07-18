@@ -12,6 +12,8 @@ public class MainController {
     private MainView view;
     private final int EMPLOYEE_ID_LENGTH=10;
     private final int MIN_INPUT_LENGTH = 2;
+    private final int MIN_PHONE_LENGTH = 6;
+    private final int MIN_ROOM_LENGTH = 3;
 
     public MainController( EmployeeListDAO employeeListDB, MainView view) {
         this.employeeDB = employeeListDB;
@@ -24,7 +26,7 @@ public class MainController {
 
     public static void main(String[] args) {
         EmployeeListDAO employeeListDAO = new EmployeeListDAO();
-        MainView view = new MainView( 500, 200);
+        MainView view = new MainView( 500, 260);
         new MainController( employeeListDAO, view );
     }
 
@@ -54,6 +56,8 @@ public class MainController {
                view.setLastname( employee.getLastname() );
                view.setFirstname( employee.getFirstname() );
                view.setJob( employee.getJob() );
+               view.setPhone( employee.getPhone() );
+               view.setRoom( employee.getRoom() );
 
                //Erfolgsmeldung an den Nutzer
                view.showInfoWindow("Der Mitarbeiter wurde gefunden.");
@@ -79,19 +83,22 @@ public class MainController {
         String firstname = view.getFirstname();
         String lastname = view.getLastname();
         String job = view.getJob();
+        String phone = view.getPhone();
+        int room = view.getRoom();
 
         boolean inputEmpty = firstname.isEmpty() || lastname.isEmpty()
-                             || job.isEmpty();
+                             || job.isEmpty() || phone.isEmpty();
 
         if(!inputEmpty){
-
             boolean inputsValid = firstname.length() >= MIN_INPUT_LENGTH
                     && lastname.length() >= MIN_INPUT_LENGTH
-                    && job.length() >= MIN_INPUT_LENGTH;
+                    && job.length() >= MIN_INPUT_LENGTH
+                    && phone.length() >= MIN_PHONE_LENGTH
+                    && String.valueOf(room).length() >= MIN_ROOM_LENGTH;
 
             if (inputsValid) {
                 String employeeID = createEmployeeID(lastname, firstname);
-                var success = employeeDB.addEmployee(employeeID, lastname, firstname, job);
+                var success = employeeDB.addEmployee(employeeID, lastname, firstname, job, phone, room);
 
                 if(success) {
                     System.out.println("new employee saved");
@@ -99,7 +106,9 @@ public class MainController {
                             "Name:    " + lastname + "\n" +
                             "Vorname: " + firstname + "\n" +
                             "ID:      " + employeeID + "\n" +
-                            "Beruf:   " + job + "\n";
+                            "Job:      " + job + "\n" +
+                            "Telefon" + phone + "\n" +
+                            "Raum:   " + room + "\n";
 
                     view.setEmployeeId(employeeID);
                     view.showInfoWindow(text);

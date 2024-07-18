@@ -8,7 +8,7 @@ import java.awt.event.ActionListener;
 public class MainView extends JFrame {
 
     private  JButton getEmployeeBtn, saveEmployeeBtn, deleteEmployeeBtn;
-    private JTextField employeeIdTf, lastnameTf, firstnameTf, jobTf;
+    private JTextField employeeIdTf, lastnameTf, firstnameTf, jobTf, roomTf, phoneTf;
 
 
     public MainView( int width, int height ){
@@ -39,18 +39,22 @@ public class MainView extends JFrame {
         lastnameTf = new JTextField();
         firstnameTf = new JTextField();
         jobTf = new JTextField();
+        roomTf = new JTextField();
+        phoneTf = new JTextField();
 
         JLabel employeeIdLabel = new JLabel("Mitarbeiter ID:");
         JLabel lastnameLabel = new JLabel("Nachname:");
         JLabel firstnameLabel = new JLabel("Vorname:");
         JLabel jobLabel = new JLabel("Tätigkeit:");
+        JLabel phoneLabel = new JLabel("Telefon:");
+        JLabel roomLabel = new JLabel("Raum:");
 
         JLabel topLabel = new JLabel("Mitarbeiterdaten hinzufügen, ändern oder löschen");
 
         //einfügen
         topPanel.add(topLabel);
 
-        centerPanel.setLayout( new GridLayout( 4, 2));
+        centerPanel.setLayout( new GridLayout( 6, 2));
         centerPanel.setBorder( new EmptyBorder(5,5,5,5));
         centerPanel.add(employeeIdLabel);
         centerPanel.add(employeeIdTf);
@@ -60,6 +64,10 @@ public class MainView extends JFrame {
         centerPanel.add(lastnameTf);
         centerPanel.add(jobLabel);
         centerPanel.add(jobTf);
+        centerPanel.add(phoneLabel);
+        centerPanel.add(phoneTf);
+        centerPanel.add(roomLabel);
+        centerPanel.add(roomTf);
 
         bottomPanel.add(getEmployeeBtn);
         bottomPanel.add(saveEmployeeBtn);
@@ -124,6 +132,35 @@ public class MainView extends JFrame {
 
     public void setEmployeeId( String id ){
        employeeIdTf.setText(id);
+    }
+
+    public String getPhone(){
+        return phoneTf.getText();
+    }
+
+    public void setPhone( String id ){
+        phoneTf.setText(id);
+    }
+
+    public int getRoom(){
+
+        int nr = 0;
+
+        try {
+            nr = Integer.parseInt(roomTf.getText() );
+
+        }
+        catch (NumberFormatException e) {
+            showErrorWindow("Keine gültige Raum Nummer");
+            throw new RuntimeException(e);
+        }
+
+        return nr;
+    }
+
+    public void setRoom( int number ){
+
+        roomTf.setText( String.valueOf(number));
     }
 
 

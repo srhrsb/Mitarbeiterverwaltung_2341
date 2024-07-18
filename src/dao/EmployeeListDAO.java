@@ -23,9 +23,9 @@ public class EmployeeListDAO {
     }
 
     public boolean addEmployee(String employeeID, String lastname,
-                               String firstname, String job ){
+                               String firstname, String job, String phone, int room ){
 
-       Employee employee = new Employee(employeeID, lastname, firstname, job);
+       Employee employee = new Employee(employeeID, lastname, firstname, job, phone, room);
        var success = employees.add(employee);
 
        if(success){
@@ -45,7 +45,9 @@ public class EmployeeListDAO {
                 String line = employee.getEmployeeID() + CSV_SEPARATOR +
                               employee.getFirstname() + CSV_SEPARATOR +
                               employee.getLastname() + CSV_SEPARATOR +
-                              employee.getJob() +
+                              employee.getJob() + CSV_SEPARATOR +
+                              employee.getPhone() + CSV_SEPARATOR +
+                              employee.getRoom() +
                               "\n";
 
                 csv.write( line );
@@ -78,7 +80,9 @@ public class EmployeeListDAO {
                        values[0], //id
                        values[2], //lastname
                        values[1], //firstname
-                       values[3]  //job
+                       values[3],  //job
+                       values[4], //phone
+                       Integer.parseInt(values[5])  //room
                 );
 
                 employees.add(employee);
@@ -88,9 +92,6 @@ public class EmployeeListDAO {
             throw new RuntimeException(e);
         }
     }
-
-
-
 
     /**
      * Gibt den Mitarbeiter mit der entsprechenden ID zurück, falls nicht gefunden null
