@@ -15,6 +15,11 @@ public class MainController {
     private final int MIN_PHONE_LENGTH = 6;
     private final int MIN_ROOM_LENGTH = 3;
 
+    /**
+     * Konstruktor, speichert benötigte Objekte DAO und View
+     * @param employeeListDB
+     * @param view
+     */
     public MainController( EmployeeListDAO employeeListDB, MainView view) {
         this.employeeDB = employeeListDB;
         this.view = view;
@@ -24,6 +29,10 @@ public class MainController {
         view.addDeleteButtonHandler(this::deleteEmployeeAction);
     }
 
+    /**
+     * Programmeinstieg/Hauptmethode, benötigte Objekte (Model und View) werden erzeugt
+     * @param args
+     */
     public static void main(String[] args) {
         EmployeeListDAO employeeListDAO = new EmployeeListDAO();
         MainView view = new MainView( 500, 260);

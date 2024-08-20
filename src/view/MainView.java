@@ -147,12 +147,19 @@ public class MainView extends JFrame {
         int nr = 0;
 
         try {
-            nr = Integer.parseInt(roomTf.getText() );
+            //es wird versucht Operationen auszuführen
+            nr = Integer.parseInt( roomTf.getText() );
 
         }
-        catch (NumberFormatException e) {
+        catch ( NumberFormatException e ) {
+            //das tritt ein, wenn in try ein Fehler aufgetreten ist
             showErrorWindow("Keine gültige Raum Nummer");
             throw new RuntimeException(e);
+        }
+        finally {
+            //optional: wird immer ausgeführt
+
+
         }
 
         return nr;
