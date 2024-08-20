@@ -27,6 +27,7 @@ public class MainController {
         view.addGetButtonHandler(this::getEmployeeAction);
         view.addSaveButtonHandler(this::saveEmployeeAction);
         view.addDeleteButtonHandler(this::deleteEmployeeAction);
+        view.addShowAllButtonHandler(this::showAllEmployeeAction);
     }
 
     /**
@@ -160,5 +161,11 @@ public class MainController {
             System.err.println("wrong id length");
             view.showErrorWindow("Die Mitarbeiter ID enthält 10 Zeichen.");
         }
+    }
+
+
+    private void showAllEmployeeAction(ActionEvent event){
+        System.out.println("Action Event: " + event.getActionCommand());
+        view.showInfoWindow(employeeDB.getAllEmployeesAsText());
     }
 }

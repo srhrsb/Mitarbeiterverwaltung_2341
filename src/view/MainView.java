@@ -7,7 +7,7 @@ import java.awt.event.ActionListener;
 
 public class MainView extends JFrame {
 
-    private  JButton getEmployeeBtn, saveEmployeeBtn, deleteEmployeeBtn;
+    private  JButton getEmployeeBtn, saveEmployeeBtn, deleteEmployeeBtn, showAllEmployeeBtn;
     private JTextField employeeIdTf, lastnameTf, firstnameTf, jobTf, roomTf, phoneTf;
 
 
@@ -19,8 +19,8 @@ public class MainView extends JFrame {
         setDefaultCloseOperation( DISPOSE_ON_CLOSE );
         addUIComponents();
         setVisible(true);
+        pack();
     }
-
 
     /**
      * Hinzufuegen von UI-Elementen
@@ -34,6 +34,7 @@ public class MainView extends JFrame {
         getEmployeeBtn = new JButton("Mitarbeiter anzeigen");
         saveEmployeeBtn = new JButton("Mitarbeiter speichern");
         deleteEmployeeBtn = new JButton("Mitarbeiter löschen");
+        showAllEmployeeBtn = new JButton("Alle Mitarbeiter anzeigen");
 
         employeeIdTf = new JTextField();
         lastnameTf = new JTextField();
@@ -72,6 +73,7 @@ public class MainView extends JFrame {
         bottomPanel.add(getEmployeeBtn);
         bottomPanel.add(saveEmployeeBtn);
         bottomPanel.add(deleteEmployeeBtn);
+        bottomPanel.add(showAllEmployeeBtn);
 
         add(topPanel, BorderLayout.NORTH);
         add(centerPanel, BorderLayout.CENTER);
@@ -100,6 +102,9 @@ public class MainView extends JFrame {
      */
     public void addDeleteButtonHandler(ActionListener listener){
         deleteEmployeeBtn.addActionListener(listener);
+    }
+    public void addShowAllButtonHandler(ActionListener listener){
+        showAllEmployeeBtn.addActionListener(listener);
     }
 
     public String getFirstname(){

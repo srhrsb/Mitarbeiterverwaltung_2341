@@ -117,4 +117,25 @@ public class EmployeeListDAO {
 
         return false;
     }
+
+    public String getAllEmployeesAsText(){
+        String txt = "";
+
+        for( var employee : employees){
+            txt +="ID: "+employee.getEmployeeID() +"\n";
+            txt +="Name: "+employee.getLastname() +"\n";
+            txt +="Vorname: "+employee.getFirstname() +"\n";
+            txt +="Job: "+employee.getJob()+"\n";
+            txt +="Telefon: "+employee.getPhone()+"\n";
+            txt +="Raum: "+employee.getRoom()+"\n";
+            txt += "\n";
+        }
+
+        return txt;
+    }
+
+
+
+
+
 }
