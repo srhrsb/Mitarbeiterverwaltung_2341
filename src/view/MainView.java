@@ -103,6 +103,11 @@ public class MainView extends JFrame {
     public void addDeleteButtonHandler(ActionListener listener){
         deleteEmployeeBtn.addActionListener(listener);
     }
+
+    /**
+     * Eventlistener für ShowAll-Button hinzufügen
+     * @param listener
+     */
     public void addShowAllButtonHandler(ActionListener listener){
         showAllEmployeeBtn.addActionListener(listener);
     }
@@ -147,6 +152,10 @@ public class MainView extends JFrame {
         phoneTf.setText(id);
     }
 
+    /**
+     * Raumnummer wird vom Textfeld geholt und zurückgegeben
+     * @return Raumnummer
+     */
     public int getRoom(){
 
         int nr = 0;
@@ -191,5 +200,16 @@ public class MainView extends JFrame {
     public void showErrorWindow( String text){
         JOptionPane.showMessageDialog(this, text, "Fehler", JOptionPane.ERROR_MESSAGE);
     }
+
+    /**
+     * Bestätigungsfenster anzeigen
+     * @param text
+     * @return 0 = YES, 1 = NO
+     */
+    public boolean confirmWindow( String text ){
+        int confirm =  JOptionPane.showConfirmDialog(this, text, "Bitte bestätigen", JOptionPane.YES_NO_OPTION);
+        return JOptionPane.YES_OPTION == confirm;
+    }
+
 
 }
